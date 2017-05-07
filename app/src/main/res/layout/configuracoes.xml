@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/CfMg"
+            android:text="@string/config_string_setTime"
+            android:textSize="@dimen/CfSzFontTvw" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/CfMg"
+            android:layout_weight="1"
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/CfEdtHora"
+                android:layout_width="@dimen/CfSzWdEdt"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/CfMg"
+                android:layout_marginRight="@dimen/CfMg"
+                android:inputType="number"
+                android:maxLength="2"
+                android:textAlignment="center"
+                android:textSize="@dimen/CfSzFontTvw" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=":"
+                android:textAlignment="center"
+                android:textSize="@dimen/CfSzFontTvw"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/CfEdtMinutos"
+                android:layout_width="@dimen/CfSzWdEdt"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/CfMg"
+                android:layout_marginRight="@dimen/CfMg"
+                android:inputType="number"
+                android:maxLength="2"
+                android:textAlignment="center"
+                android:textSize="@dimen/CfSzFontTvw" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=":"
+                android:textAlignment="center"
+                android:textSize="@dimen/CfSzFontTvw"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/CfEdtSegundos"
+                android:layout_width="@dimen/CfSzWdEdt"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/CfMg"
+                android:layout_marginRight="@dimen/CfMg"
+                android:inputType="number"
+                android:maxLength="2"
+                android:textAlignment="center"
+                android:textSize="@dimen/CfSzFontTvw" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/CfMg"
+
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/RadCrescente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClickRadio"
+                android:text="@string/config_string_radiobtn_crescente"
+                android:layout_marginLeft="@dimen/CfMgLeftRad"
+                android:textSize="@dimen/CfSzFontTvw" />
+
+            <RadioButton
+                android:id="@+id/RadDecrescente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/CfMgLeftRad"
+                android:onClick="onClickRadio"
+                android:text="@string/config_string_radiobtn_decrescente"
+                android:textSize="@dimen/CfSzFontTvw" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/CfMg"
+            android:text="@string/config_string_setPlacar"
+            android:textSize="@dimen/CfSzFontTvw" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/CfMg"
+            android:layout_weight="1"
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/CfeEdtCasa"
+                android:layout_width="@dimen/CfSzWdEdt"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/CfMg"
+                android:layout_marginRight="@dimen/CfMg"
+                android:inputType="number"
+                android:maxLength="2"
+                android:textAlignment="center"
+                android:textSize="@dimen/CfSzFontTvw" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="X"
+                android:textAlignment="center"
+                android:textSize="@dimen/CfSzFontTvw" />
+
+            <EditText
+                android:id="@+id/CfEdtVisitante"
+                android:layout_width="@dimen/CfSzWdEdt"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/CfMg"
+                android:layout_marginRight="@dimen/CfMg"
+                android:inputType="number"
+                android:maxLength="2"
+                android:textAlignment="center"
+                android:textSize="@dimen/CfSzFontTvw" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

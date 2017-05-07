@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/MnMaConfig"
+        android:title="@string/ma_string_menu_configuracao"/>
+    <item
+        android:id="@+id/MnMaPlacar"
+        android:title="@string/ResetarPlacar"/>
+    <item
+        android:id="@+id/MnMaCronometro"
+        android:title="@string/ma_string_menu_ResetarCronometro"/>
+</menu>
