@@ -3,13 +3,13 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <dimen name="MnSzFontCronometro">50sp</dimen>
-    <dimen name="MnSzFontPlacar">60sp</dimen>
+    <dimen name="MnSzFontCronometro">80sp</dimen>
     <dimen name="MnMgX">32dp</dimen>
+    <dimen name="MnSzFontPlacar">80sp</dimen>
     <dimen name="MnMgBottonPlacar">32dp</dimen>
 
 
-    <dimen name="CfSzFontTvw">20sp</dimen>
+    <dimen name="CfSzFontTvw">40sp</dimen>
     <dimen name="CfSzWdEdt">64dp</dimen>
     <dimen name="CfMg">20dp</dimen>
     <dimen name="CfMgLeftRad">25dp</dimen>
