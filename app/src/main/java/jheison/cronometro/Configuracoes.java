@@ -1,5 +1,6 @@
 package jheison.cronometro;
 
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -17,6 +18,9 @@ public class Configuracoes extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.configuracoes);
+
+        ActionBar Bar =  getSupportActionBar();
+        Bar.setDisplayHomeAsUpEnabled(true);
 
         EdtMinutos = (EditText) findViewById(R.id.CfEdtMinutos);
         EdtSegundo = (EditText) findViewById(R.id.CfEdtSegundos);
@@ -78,11 +82,7 @@ public class Configuracoes extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.MnCfSalvar:
-               Salvar();
-            break;
-        }
+        Salvar();
 
         return true;
     }

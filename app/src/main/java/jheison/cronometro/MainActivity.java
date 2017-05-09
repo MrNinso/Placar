@@ -10,16 +10,24 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.TextView;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class MainActivity extends AppCompatActivity {
     private TextView TvwPlacarCasa, TvwPlacarVisitante, TvwCronometro;
-    private long MiliSegundo, MiliSegundoPausado = 0;
+    private long MiliSegundo;
     private Runnable CronometroCrescente, CronometroDecrecente;
     private Handler CronometroHandler;
     private MediaPlayer Beep;
     private Boolean FirstClick = true;
+    private Timer TimerBeep;
+    private TimerTask TimerBeepTask;
+    private Animation PiscarTvw;
 
     public static long MiliFinal = 10000;
     public static boolean EstadoCronometro = false, Crescente = true;
@@ -30,6 +38,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        PiscarTvw = new AlphaAnimation(0.0f, 1.0f);
+        PiscarTvw.setDuration(500);
+        PiscarTvw.setStartOffset(20);
+        PiscarTvw.setRepeatMode(Animation.REVERSE);
+        PiscarTvw.setRepeatCount(Animation.INFINITE);
 
         final Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
 
@@ -42,20 +56,19 @@ public class MainActivity extends AppCompatActivity {
         CronometroCrescente = new Runnable() {
             @Override
             public void run() {
-                    long mili = System.currentTimeMillis() - MiliSegundo;
-                    TvwCronometro.setText(FormatarTempo(mili));
+                long mili = System.currentTimeMillis() - MiliSegundo;
+                TvwCronometro.setText(FormatarTempo(mili));
 
-                    if (mili < MiliFinal) {
-                        if(EstadoCronometro) {
-                            CronometroHandler.post(CronometroCrescente);
-                        } else {
-                            MiliSegundoPausado = System.currentTimeMillis();
-                        }
-                    } else {
-                        PlayBeep();
-                        EstadoCronometro = !EstadoCronometro;
-                        FirstClick = true;
+                if (mili < MiliFinal) {
+                    if(EstadoCronometro) {
+                        CronometroHandler.post(CronometroCrescente);
                     }
+
+                } else {
+                    EstadoCronometro = !EstadoCronometro;
+                    FirstClick = true;
+                    TvwCronometro.startAnimation(PiscarTvw);
+                }
             }
         };
 
@@ -68,9 +81,9 @@ public class MainActivity extends AppCompatActivity {
                 if(mili > 0){
                     CronometroHandler.post(CronometroDecrecente);
                 } else {
-                    PlayBeep();
                     EstadoCronometro = !EstadoCronometro;
                     FirstClick = true;
+                    TvwCronometro.startAnimation(PiscarTvw);
                 }
             }
         };
@@ -100,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onLongClick(View v) {
                 if (!EstadoCronometro) {
                     MiliSegundo = (FirstClick) ? System.currentTimeMillis() : MiliSegundo;
+                    InicialTimer(MiliFinal);
 
                     if (Crescente) {
                         CronometroHandler.post(CronometroCrescente);
@@ -119,25 +133,50 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickScreen(View view) {
         if (Beep != null) {
-            if (Beep.isPlaying()) {
-                Beep.release();
-                Beep = null;
-            }
+            TimerBeep.cancel();
+            TimerBeep = null;
+            Beep.release();
+            Beep = null;
+            TvwCronometro.clearAnimation();
         }
+    }
+
+    private void InicialTimer(long delay) {
+        TimerBeep = new Timer();
+
+        TimerBeepTask = new TimerTask() {
+
+            @Override
+            public void run() {
+               PlayBeep();
+            }
+        };
+
+        TimerBeep.schedule(TimerBeepTask, delay, 1000);
     }
 
     private void PlayBeep() {
         if (Beep == null) {
             Beep = MediaPlayer.create(this, R.raw.beep);
             Beep.setScreenOnWhilePlaying(true);
-            Beep.setLooping(true);
             Beep.start();
 
-        } else if(Beep.isPlaying()) {
+        } else {
             Beep.start();
         }
     }
-    
+
+    private void StopBeep () {
+        if (TimerBeep != null) {
+            TimerBeep.cancel();
+            TimerBeep = null;
+        }
+        if (Beep != null) {
+            Beep.release();
+            Beep = null;
+        }
+    }
+
     private void ResetarPlacar() {
         PlacarCasa = 0;
         PlacarVisitante = 0;
@@ -156,13 +195,8 @@ public class MainActivity extends AppCompatActivity {
 
         FirstClick = true;
         EstadoCronometro = false;
+        StopBeep();
 
-        if (Beep != null) {
-            if (Beep.isPlaying()) {
-                Beep.release();
-                Beep = null;
-            }
-        }
     }
 
     private String FormatarTempo(long mili){
@@ -179,20 +213,20 @@ public class MainActivity extends AppCompatActivity {
         inflater.inflate(R.menu.main, menu);
         return true;
     }
-    
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.MnMaCronometro:
                 ResetarCronometro();
-            break;
+                break;
             case R.id.MnMaPlacar:
                 ResetarPlacar();
-            break;
+                break;
             case R.id.MnMaConfig:
                 Intent intent = new Intent(this, Configuracoes.class);
                 startActivityForResult(intent, 0);
-            break;
+                break;
         }
 
         return true;
@@ -207,5 +241,11 @@ public class MainActivity extends AppCompatActivity {
 
         TvwPlacarCasa.setText(String.format("%02d", PlacarCasa));
         TvwPlacarVisitante.setText(String.format("%02d", PlacarVisitante));
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        StopBeep();
     }
 }

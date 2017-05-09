@@ -12,7 +12,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/CfMg"
-            android:text="@string/config_string_setTime"
+            android:text="@string/ConfigurarCronometro"
             android:textSize="@dimen/CfSzFontTvw" />
 
         <LinearLayout
@@ -86,7 +86,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onClickRadio"
-                android:text="@string/config_string_radiobtn_crescente"
+                android:text="@string/Crescente"
                 android:layout_marginLeft="@dimen/CfMgLeftRad"
                 android:textSize="@dimen/CfSzFontTvw" />
 
@@ -96,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/CfMgLeftRad"
                 android:onClick="onClickRadio"
-                android:text="@string/config_string_radiobtn_decrescente"
+                android:text="@string/Decrescente"
                 android:textSize="@dimen/CfSzFontTvw" />
         </LinearLayout>
 
@@ -111,7 +111,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/CfMg"
-            android:text="@string/config_string_setPlacar"
+            android:text="@string/ConfigurarPlacar"
             android:textSize="@dimen/CfSzFontTvw" />
 
         <LinearLayout

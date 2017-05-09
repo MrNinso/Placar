@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/MnCfSalvar"
-        android:icon="@android:drawable/ic_menu_save"
+        android:title="@string/Salvar"
         android:visible="true"
         app:showAsAction="always" />
 </menu>

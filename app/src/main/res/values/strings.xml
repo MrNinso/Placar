@@ -2,13 +2,14 @@
     <string name="app_name">Placar</string>
 
     <string name="ResetarPlacar">Resetar o Placar</string>
-    <string name="ma_string_menu_ResetarCronometro">Resetar o Cronometro</string>
-    <string name="ma_string_menu_configuracao">Configuração</string>
+    <string name="ResetarCronometro">Resetar o Cronometro</string>
+    <string name="configuracao">Configuração</string>
 
 
-    <string name="config_string_setTime">Configurar o Cronometro</string>
-    <string name="config_string_setPlacar">Configurar o Placar</string>
+    <string name="ConfigurarCronometro">Configurar o Cronometro</string>
+    <string name="ConfigurarPlacar">Configurar o Placar</string>
 
-    <string name="config_string_radiobtn_crescente">Crescente</string>
-    <string name="config_string_radiobtn_decrescente">Decrescente</string>
+    <string name="Crescente">Crescente</string>
+    <string name="Decrescente">Decrescente</string>
+    <string name="Salvar">Salvar</string>
 </resources>
