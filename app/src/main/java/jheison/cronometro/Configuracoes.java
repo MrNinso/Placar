@@ -57,7 +57,6 @@ public class Configuracoes extends AppCompatActivity {
         MainActivity.PlacarCasa = Integer.parseInt(PlacarCasa);
         MainActivity.PlacarVisitante = Integer.parseInt(PlacarVisitante);
 
-
         if (MainActivity.MiliFinal == 0 && MainActivity.Crescente) {
             MainActivity.MiliFinal = 1000;
         }
@@ -84,7 +83,7 @@ public class Configuracoes extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Salvar();
-
+        
         return true;
     }
 
