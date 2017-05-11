@@ -20,7 +20,7 @@ import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
     private TextView TvwPlacarCasa, TvwPlacarVisitante, TvwCronometro;
-    private long MiliSegundo;
+    private long MiliSegundo, Mili = 0, Milipausado = 0;
     private Runnable CronometroCrescente, CronometroDecrecente;
     private Handler CronometroHandler;
     private MediaPlayer Beep;
@@ -56,18 +56,17 @@ public class MainActivity extends AppCompatActivity {
         CronometroCrescente = new Runnable() {
             @Override
             public void run() {
-                long mili = System.currentTimeMillis() - MiliSegundo;
-                TvwCronometro.setText(FormatarTempo(mili));
+                Mili = System.currentTimeMillis() - MiliSegundo;
+                TvwCronometro.setText(FormatarTempo(Mili));
 
-                if (mili < MiliFinal) {
-                    if(EstadoCronometro) {
+                if (Mili < MiliFinal) {
                         CronometroHandler.post(CronometroCrescente);
-                    }
 
                 } else {
                     EstadoCronometro = !EstadoCronometro;
                     FirstClick = true;
                     TvwCronometro.startAnimation(PiscarTvw);
+                    Mili = 0;
                 }
             }
         };
@@ -75,15 +74,16 @@ public class MainActivity extends AppCompatActivity {
         CronometroDecrecente = new Runnable() {
             @Override
             public void run() {
-                long mili = MiliFinal - (System.currentTimeMillis() - MiliSegundo);
-                TvwCronometro.setText(FormatarTempo(mili));
+                Mili = MiliFinal - (System.currentTimeMillis() - MiliSegundo);
+                TvwCronometro.setText(FormatarTempo(Mili));
 
-                if(mili > 0){
+                if(Mili > 0){
                     CronometroHandler.post(CronometroDecrecente);
                 } else {
                     EstadoCronometro = !EstadoCronometro;
                     FirstClick = true;
                     TvwCronometro.startAnimation(PiscarTvw);
+                    Mili = 0;
                 }
             }
         };
